@@ -1,0 +1,15 @@
+RAG-Anything Integration Test Document
+
+This document serves as a test file for verification of the RAG pipeline integration with vLLM (Virtual Large Language Model).
+
+Key Concepts:
+1. RAG (Retrieval-Augmented Generation): A technique that enhances LLM responses by retrieving relevant information from a knowledge base.
+2. vLLM: An open-source LLM inference engine optimized for high throughput and low latency. It provides an OpenAI-compatible API.
+3. RAG-Anything: A framework designed to handle multimodal documents, building two types of graphs: Semantic Graph and Structural Graph.
+
+Configuration:
+- Backend: vLLM (serving Qwen2.5 or similar)
+- Port: 8000
+- Integration: Using standard OpenAI client compatibility.
+
+If this text is retrieved and used to answer the query "What uses an OpenAI-compatible API?", then the integration is successful.

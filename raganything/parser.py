@@ -812,9 +812,18 @@ class MineruParser(Parser):
 
         file_stem_subdir = output_dir / file_stem
         if file_stem_subdir.exists():
-            md_file = file_stem_subdir / method / f"{file_stem}.md"
-            json_file = file_stem_subdir / method / f"{file_stem}_content_list.json"
-            images_base_dir = file_stem_subdir / method
+            # Check for exact method match first
+            if (file_stem_subdir / method).exists():
+                images_base_dir = file_stem_subdir / method
+            # Check for hybrid_ prefix (common in newer Mineru versions)
+            elif (file_stem_subdir / f"hybrid_{method}").exists():
+                images_base_dir = file_stem_subdir / f"hybrid_{method}"
+            # Fallback to method check (original behavior)
+            else:
+                images_base_dir = file_stem_subdir / method
+
+            md_file = images_base_dir / f"{file_stem}.md"
+            json_file = images_base_dir / f"{file_stem}_content_list.json"
 
         # Read markdown content
         md_content = ""
